@@ -5,10 +5,9 @@ import { Ingredient } from 'src/models/ingredient';
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
-  selectionEmitter = new EventEmitter<Recipe>();
-
   private recipes: Recipe[] = [
     {
+      id: 1,
       name: 'Chicken Broth',
       description: 'A chicken broth',
       ingredients: [
@@ -19,6 +18,7 @@ export class RecipeService {
         'https://www.recipetineats.com/wp-content/uploads/2017/05/Chicken-Noodle-Soup-from-scratch_3.jpg?resize=650,910',
     },
     {
+      id: 2,
       name: 'Borstch',
       description: 'A russian delicacy',
       ingredients: [
@@ -33,6 +33,10 @@ export class RecipeService {
 
   getRecipes = () => {
     return [...this.recipes];
+  };
+
+  getRecipe = (id: number) => {
+    return this.recipes.find((recipe) => recipe.id === id);
   };
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
